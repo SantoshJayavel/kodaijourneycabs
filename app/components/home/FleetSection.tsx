@@ -1,0 +1,93 @@
+"use client";
+
+import Image from "next/image";
+import { Card, CardBody, Button } from "@heroui/react";
+
+const fleet = [
+  {
+    name: "Hatchback",
+    passengers: "3–4 Passengers",
+    luggage: "2 Bags",
+    image: "/fleet/hatchback.jpg",
+  },
+  {
+    name: "Sedan",
+    passengers: "4 Passengers",
+    luggage: "3 Bags",
+    image: "/fleet/sedan.jpg",
+  },
+  {
+    name: "SUV",
+    passengers: "6–7 Passengers",
+    luggage: "4 Bags",
+    image: "/fleet/suv.jpg",
+  },
+  {
+    name: "Tempo Traveller",
+    passengers: "12–15 Passengers",
+    luggage: "Ample Space",
+    image: "/fleet/tempo.jpg",
+  },
+];
+
+export default function FleetSection() {
+  return (
+    <section id="fleet" className="bg-white py-24">
+      <div className="mx-auto max-w-7xl px-6">
+        {/* Section Header */}
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl">
+            Our Fleet
+          </h2>
+          <p className="mt-4 text-lg text-zinc-600">
+            Choose from a wide range of clean and well-maintained vehicles.
+          </p>
+        </div>
+
+        {/* Fleet Grid */}
+        <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {fleet.map((vehicle) => (
+            <Card
+              key={vehicle.name}
+              shadow="sm"
+              radius="lg"
+              className="border border-zinc-200"
+            >
+              <CardBody className="p-0 overflow-hidden">
+                {/* Image */}
+                <div className="relative h-48 w-full">
+                  <Image
+                    src={vehicle.image}
+                    alt={vehicle.name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+
+                {/* Content */}
+                <div className="p-6 text-center">
+                  <h3 className="text-lg font-semibold text-zinc-900">
+                    {vehicle.name}
+                  </h3>
+
+                  <p className="mt-2 text-sm text-zinc-600">
+                    {vehicle.passengers} • {vehicle.luggage}
+                  </p>
+
+                  <Button
+                    color="success"
+                    radius="full"
+                    size="sm"
+                    className="mt-5"
+                  >
+                    Book Now
+                  </Button>
+                </div>
+              </CardBody>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
