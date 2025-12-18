@@ -8,25 +8,25 @@ const fleet = [
     name: "Hatchback",
     passengers: "3–4 Passengers",
     luggage: "2 Bags",
-    image: "/fleet/hatchback.jpg",
+    image: "/fleet/hatchback.png",
   },
   {
     name: "Sedan",
     passengers: "4 Passengers",
     luggage: "3 Bags",
-    image: "/fleet/sedan.jpg",
+    image: "/fleet/sSedan.png",
   },
   {
     name: "SUV",
     passengers: "6–7 Passengers",
     luggage: "4 Bags",
-    image: "/fleet/suv.jpg",
+    image: "/fleet/suv.png",
   },
   {
     name: "Tempo Traveller",
     passengers: "12–15 Passengers",
     luggage: "Ample Space",
-    image: "/fleet/tempo.jpg",
+    image: "/fleet/mini-van.png",
   },
 ];
 
@@ -55,11 +55,12 @@ export default function FleetSection() {
             >
               <CardBody className="p-0 overflow-hidden">
                 {/* Image */}
-                <div className="relative h-48 w-full">
+                <div className="relative h-48 w-full flex items-center justify-center">
                   <Image
                     src={vehicle.image}
                     alt={vehicle.name}
-                    fill
+                    width={200}
+                    height={150}
                     className="object-cover"
                   />
                 </div>
