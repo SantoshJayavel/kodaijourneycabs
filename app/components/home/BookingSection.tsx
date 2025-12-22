@@ -135,7 +135,7 @@ export default function BookingSection() {
     const message = buildWhatsAppMessage();
     const encodedMessage = encodeURIComponent(message);
 
-    const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+    const whatsappURL = `https://wa.me/91${WHATSAPP_NUMBER}?text=${encodedMessage}`;
 
     // Open WhatsApp in new tab
     window.open(whatsappURL, "_blank");
@@ -274,6 +274,7 @@ export default function BookingSection() {
                 classNames={{
                   input: "text-zinc-900 bg-white px-6 py-2",
                   popoverContent: "bg-white text-black p-4 rounded-lg shadow-lg",
+                  calendar:"bg-black"
                 }}
               />
 
