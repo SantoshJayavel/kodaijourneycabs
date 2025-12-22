@@ -12,15 +12,17 @@ import {
 } from "@heroui/react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import clsx from "clsx";
 
 const navLinks = [
-  { name: "Home", id: "home" },
-  { name: "Services", id: "services" },
-  { name: "Packages", id: "packages" },
-  { name: "Contact", id: "contact" },
+  { name: "Home", id: "home", type: "scroll" },
+  { name: "Services", id: "services", type: "scroll" },
+  { name: "Packages", id: "packages", type: "scroll" },
+  { name: "Gallery", id: "gallery", href: "/gallery", type: "route" },
+  { name: "Contact", id: "contact", type: "scroll" },
 ];
 
 export default function Header() {
@@ -54,6 +56,7 @@ export default function Header() {
   return (
     <Navbar
       isMenuOpen={isMenuOpen}
+      shouldHideOnScroll={true}
       onMenuOpenChange={setIsMenuOpen}
       maxWidth="xl"
       className={clsx(
@@ -63,26 +66,10 @@ export default function Header() {
         scrolled && "shadow-sm border-b border-zinc-200/60"
       )}
     >
-      {/* MOBILE TOGGLE */}
-      <NavbarContent justify="start" className="sm:hidden">
-        <NavbarMenuToggle
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="sm:hidden"
-        />
-        <NavbarBrand>
-          <AcmeLogo />
-          <Link
-            href="/"
-            className="text-xl md:text-2xl font-semibold tracking-tight text-white"
-          >
-            Kodai Journey
-          </Link>
-        </NavbarBrand>
-      </NavbarContent>
 
       {/* BRAND */}
       <NavbarBrand>
-        <AcmeLogo />
+        <KodaiJourneyLogo />
         <Link
           href="/"
           className="text-xl md:text-2xl font-semibold tracking-tight text-white"
@@ -95,16 +82,25 @@ export default function Header() {
       <NavbarContent className="hidden md:flex gap-8" justify="center">
         {navLinks.map((link) => (
           <NavbarItem key={link.name}>
-            <button
-              onClick={() => handleScroll(link.id)}
-              className={clsx(
-                "text-sm font-medium transition-colors",
-                pathname === "/" && "cursor-pointer",
-                "text-white hover:text-gray-200"
-              )}
-            >
-              {link.name}
-            </button>
+            {link.type === "scroll" ? (
+              <button
+                onClick={() => handleScroll(link.id!)}
+                className={clsx(
+                  "text-sm font-medium transition-colors",
+                  pathname === "/" && "cursor-pointer",
+                  "text-white hover:text-gray-200"
+                )}
+              >
+                {link.name}
+              </button>
+            ) : (
+              <Link
+                href={link.href!}
+                className="text-sm font-medium text-white hover:text-gray-200 transition-colors"
+              >
+                {link.name}
+              </Link>
+            )}
           </NavbarItem>
         ))}
       </NavbarContent>
@@ -122,7 +118,6 @@ export default function Header() {
         </Button>
       </NavbarContent>
 
-      {/* MOBILE MENU */}
       <NavbarMenu className="pt-6">
         {navLinks.map((link) => (
           <NavbarMenuItem key={link.name}>
@@ -154,15 +149,14 @@ export default function Header() {
   );
 }
 
-export const AcmeLogo = () => {
+export const KodaiJourneyLogo = () => {
   return (
-    <svg fill="none" height="36" viewBox="0 0 32 32" width="36">
-      <path
-        clipRule="evenodd"
-        d="M17.6482 10.1305L15.8785 7.02583L7.02979 22.5499H10.5278L17.6482 10.1305ZM19.8798 14.0457L18.11 17.1983L19.394 19.4511H16.8453L15.1056 22.5499H24.7272L19.8798 14.0457Z"
-        fill="currentColor"
-        fillRule="evenodd"
-      />
-    </svg>
+    <Image
+      src="/images/Logo.png"
+      alt="Acme Logo"
+      width={80}
+      height={80}
+      priority
+    />
   );
 };

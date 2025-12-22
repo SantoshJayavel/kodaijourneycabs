@@ -69,7 +69,7 @@ export default function RoutesSection() {
                   size="sm"
                   color="success"
                   variant="flat"
-                  className="w-fit"
+                  className="w-fit text-[#33612B] font-semibold"
                 >
                   {route.type}
                 </Chip>
@@ -94,6 +94,7 @@ export default function RoutesSection() {
                     color="success"
                     radius="full"
                     size="sm"
+                    className="text-[#33612B]"
                   >
                     View Details
                   </Button>

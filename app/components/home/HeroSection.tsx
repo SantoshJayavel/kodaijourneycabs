@@ -11,7 +11,8 @@ export default function HeroSection() {
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage:
-            "url('https://images.unsplash.com/photo-1604537466608-109fa2f16c3b')",
+            "url('/images/Cover_Picture.jpg')",
+          // "url('https://images.unsplash.com/photo-1604537466608-109fa2f16c3b')",
         }}
       />
 
@@ -40,19 +41,6 @@ export default function HeroSection() {
             className="font-medium px-8"
           >
             Book Your Ride
-          </Button>
-
-          <Button
-            as="a"
-            href="https://wa.me/91XXXXXXXXXX"
-            target="_blank"
-            rel="noopener noreferrer"
-            variant="bordered"
-            radius="full"
-            size="lg"
-            className="border-white text-white hover:bg-white hover:text-black px-8"
-          >
-            WhatsApp Us
           </Button>
         </div>
       </div>

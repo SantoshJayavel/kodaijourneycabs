@@ -31,6 +31,11 @@ const fleet = [
 ];
 
 export default function FleetSection() {
+
+  const message = encodeURIComponent(
+    "Hi, I would like to book a cab from Kodai Journey"
+  );
+
   return (
     <section id="fleet" className="bg-white py-24">
       <div className="mx-auto max-w-7xl px-6">
@@ -76,10 +81,12 @@ export default function FleetSection() {
                   </p>
 
                   <Button
-                    color="success"
+                    as="a"
+                    href={`https://wa.me/919952227577?text=${message}`}
+                    target="_blank"
                     radius="full"
                     size="sm"
-                    className="mt-5"
+                    className="mt-5 text-[#33612B]"
                   >
                     Book Now
                   </Button>

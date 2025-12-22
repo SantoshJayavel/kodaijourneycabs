@@ -5,10 +5,10 @@ export default function Footer() {
         {/* Brand */}
         <div>
           <h3 className="text-lg font-semibold text-white">
-            Kodaijourneycabs
+            Kodai Journey Tours & Travels
           </h3>
           <p className="mt-3 text-sm leading-6">
-            Trusted cab services in Kodaikanal for local, outstation and airport
+            Trusted cab services in Kodaikanal for local  , outstation and airport
             travel.
           </p>
         </div>
@@ -39,7 +39,7 @@ export default function Footer() {
         <div>
           <h4 className="text-sm font-semibold text-white">Contact</h4>
           <ul className="mt-4 space-y-2 text-sm">
-            <li>📞 +91 XXXXXXXXXX</li>
+            <li>📞 +91 99522 27577</li>
             <li>💬 WhatsApp Available</li>
             <li>📍 Kodaikanal, Tamil Nadu</li>
           </ul>
