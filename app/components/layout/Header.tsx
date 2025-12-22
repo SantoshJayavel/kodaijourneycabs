@@ -7,14 +7,13 @@ import {
   NavbarItem,
   NavbarMenu,
   NavbarMenuItem,
-  NavbarMenuToggle,
   Button,
 } from "@heroui/react";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
 import clsx from "clsx";
 
 const navLinks = [
@@ -26,6 +25,7 @@ const navLinks = [
 ];
 
 export default function Header() {
+  const router = useRouter();
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
@@ -42,6 +42,13 @@ export default function Header() {
   }, []);
 
   const handleScroll = (id: string) => {
+    // If not on home page, navigate first
+    if (pathname !== "/") {
+      router.push(`/#${id}`);
+      setIsMenuOpen(false);
+      return;
+    }
+
     const element = document.getElementById(id);
     if (!element) return;
 
@@ -49,14 +56,13 @@ export default function Header() {
       behavior: "smooth",
       block: "start",
     });
+
+    setIsMenuOpen(false);
   };
-
-
 
   return (
     <Navbar
       isMenuOpen={isMenuOpen}
-      shouldHideOnScroll={true}
       onMenuOpenChange={setIsMenuOpen}
       maxWidth="xl"
       className={clsx(
@@ -66,7 +72,6 @@ export default function Header() {
         scrolled && "shadow-sm border-b border-zinc-200/60"
       )}
     >
-
       {/* BRAND */}
       <NavbarBrand>
         <KodaiJourneyLogo />
@@ -110,7 +115,6 @@ export default function Header() {
         <Button
           as={Link}
           href="/contact"
-          color="success"
           radius="full"
           className="hidden sm:flex px-7 py-2.5 font-medium shadow-sm"
         >
@@ -133,17 +137,6 @@ export default function Header() {
             </button>
           </NavbarMenuItem>
         ))}
-
-        <NavbarMenuItem className="mt-4">
-          <Button
-            as={Link}
-            href="/contact"
-            radius="full"
-            className="w-full font-medium"
-          >
-            Book Now
-          </Button>
-        </NavbarMenuItem>
       </NavbarMenu>
     </Navbar>
   );
@@ -153,7 +146,7 @@ export const KodaiJourneyLogo = () => {
   return (
     <Image
       src="/images/Logo.png"
-      alt="Acme Logo"
+      alt="Kodai Journey Logo"
       width={80}
       height={80}
       priority

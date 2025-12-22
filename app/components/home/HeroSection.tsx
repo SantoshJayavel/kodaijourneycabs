@@ -40,7 +40,7 @@ export default function HeroSection() {
             size="lg"
             className="font-medium px-8"
           >
-            Book Your Ride
+            Book Your Service
           </Button>
         </div>
       </div>

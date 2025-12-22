@@ -11,6 +11,8 @@ import Image from "next/image";
 
 export default function Home() {
 
+  const mobile = "9952227577";
+
   const message = encodeURIComponent(
     "Hi, I would like to book a cab from Kodai Journey 🚕"
   );
@@ -26,7 +28,7 @@ export default function Home() {
       <Button
         isIconOnly
         as="a"
-        href={`https://wa.me/919952227577?text=${message}`}
+        href={`https://wa.me/91${mobile}?text=${message}`}
         target="_blank"
         aria-label="Chat on WhatsApp"
         className="fixed bottom-6 right-6 z-50 h-14 w-14 shadow-xl bg-green-500 hover:bg-green-600 flex items-center justify-center"

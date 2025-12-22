@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { DateValue } from "@internationalized/date";
+import { DateValue, today } from "@internationalized/date";
 import {
   Card,
   CardBody,
@@ -31,14 +31,136 @@ const vehicleOptions = [
 ];
 
 export default function BookingSection() {
+
+  const WHATSAPP_NUMBER = "9952227577";
   const [form, setForm] = useState<BookingFormState>({
     name: "",
     phone: "",
     pickup: "",
     drop: "",
-    date: null,
+    date: null as DateValue | null,
     vehicle: "",
   });
+
+  const [errors, setErrors] = useState({
+    name: "",
+    phone: "",
+    pickup: "",
+    drop: "",
+    date: "",
+    vehicle: "",
+  });
+
+  const validateDate = (date: DateValue | null) => {
+    if (!date) {
+      return "Please select a travel date";
+    }
+
+    const dateObj = new Date(date.toString());
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    if (dateObj < today) {
+      return "Past dates are not allowed";
+    }
+
+    return "";
+  };
+
+  const validateForm = () => {
+    const newErrors = {
+      name: "",
+      phone: "",
+      pickup: "",
+      drop: "",
+      date: "",
+      vehicle: "",
+    };
+
+    if (!form.name.trim()) {
+      newErrors.name = "Name is required";
+    }
+
+    if (!form.phone.trim()) {
+      newErrors.phone = "Phone number is required";
+    } else if (!/^[6-9]\d{9}$/.test(form.phone)) {
+      newErrors.phone = "Enter a valid 10-digit mobile number";
+    }
+
+    if (!form.pickup.trim()) {
+      newErrors.pickup = "Pickup location is required";
+    }
+
+    if (!form.drop.trim()) {
+      newErrors.drop = "Drop location is required";
+    }
+
+    const dateError = validateDate(form.date);
+    if (dateError) {
+      newErrors.date = dateError;
+    }
+
+    if (!form.vehicle) {
+      newErrors.vehicle = "Please select a vehicle";
+    }
+
+    setErrors(newErrors);
+
+    // return true if no errors
+    return Object.values(newErrors).every((e) => e === "");
+  };
+
+  const buildWhatsAppMessage = () => {
+    return `
+  🚕 *New Cab Booking Request*
+
+  👤 Name: ${form.name}
+  📞 Phone: ${form.phone}
+
+  📍 Pickup: ${form.pickup}
+  📍 Drop: ${form.drop}
+
+  📅 Travel Date: ${form.date?.toString()}
+  🚗 Vehicle: ${form.vehicle}
+
+  Please confirm availability.
+  `.trim();
+  };
+
+  const handleSubmit = () => {
+    const isValid = validateForm();
+
+    if (!isValid) return;
+
+    const message = buildWhatsAppMessage();
+    const encodedMessage = encodeURIComponent(message);
+
+    const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+
+    // Open WhatsApp in new tab
+    window.open(whatsappURL, "_blank");
+
+    // OPTIONAL: reset form
+    setForm({
+      name: "",
+      phone: "",
+      pickup: "",
+      drop: "",
+      date: null,
+      vehicle: "",
+    });
+
+    setErrors({
+      name: "",
+      phone: "",
+      pickup: "",
+      drop: "",
+      date: "",
+      vehicle: "",
+    });
+  };
+
+
 
   return (
     <section id="contact" className="bg-zinc-50 py-24">
@@ -46,7 +168,7 @@ export default function BookingSection() {
         {/* Section Header */}
         <div className="text-center">
           <h2 className="text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl">
-            Book Your Cab
+            Book Your Service
           </h2>
           <p className="mt-4 text-lg text-zinc-600">
             Quick and easy booking. Our team will contact you shortly.
@@ -60,7 +182,7 @@ export default function BookingSection() {
               className="grid gap-6 sm:grid-cols-2"
               onSubmit={(e) => {
                 e.preventDefault();
-                console.log(form);
+                handleSubmit();
               }}
             >
               {/* Full Name */}
@@ -71,22 +193,28 @@ export default function BookingSection() {
                 onChange={(e) =>
                   setForm({ ...form, name: e.target.value })
                 }
+                isInvalid={!!errors.name}
+                errorMessage={errors.name}
                 classNames={{
                   input: "text-zinc-900 bg-white px-6 py-2",
-                  inputWrapper: "border-black hover:border-zinc-400",
                 }}
               />
 
               {/* Phone */}
               <Input
-                placeholder="+91 98765 43210"
+                placeholder="XXXXXXXXXX"
                 type="tel"
                 isRequired
-                variant="bordered"
                 value={form.phone}
-                onChange={(e) =>
-                  setForm({ ...form, phone: e.target.value })
-                }
+                isInvalid={!!errors.phone}
+                errorMessage={errors.phone}
+                onChange={(e) => {
+                  const value = e.target.value
+                    .replace(/\D/g, "")   // allow only numbers
+                    .slice(0, 10);        // max 10 digits
+
+                  setForm({ ...form, phone: value });
+                }}
                 classNames={{
                   label: "text-zinc-700 font-medium",
                   input: "text-zinc-900 bg-white px-6 py-2",
@@ -94,9 +222,10 @@ export default function BookingSection() {
                 }}
               />
 
+
               {/* Pickup */}
               <Input
-                placeholder="Kodaikanal Bus Stand"
+                placeholder="Pickup Location"
                 isRequired
                 variant="bordered"
                 value={form.pickup}
@@ -112,7 +241,7 @@ export default function BookingSection() {
 
               {/* Drop */}
               <Input
-                placeholder="Coimbatore Airport"
+                placeholder="Drop Location"
                 isRequired
                 variant="bordered"
                 value={form.drop}
@@ -129,22 +258,32 @@ export default function BookingSection() {
               {/* Travel Date */}
               <DatePicker
                 isRequired
-                variant="bordered"
+                minValue={today("UTC")}
                 value={form.date}
-                onChange={(date) =>
-                  setForm({ ...form, date })
-                }
+                onChange={(date) => {
+                  setForm({ ...form, date });
+
+                  setErrors({
+                    ...errors,
+                    date: validateDate(date),
+                  });
+                }}
                 className="sm:col-span-2"
+                isInvalid={!!errors.date}
+                errorMessage={errors.date}
                 classNames={{
                   input: "text-zinc-900 bg-white px-6 py-2",
-                  inputWrapper: "border-zinc-300 hover:border-zinc-400",
+                  popoverContent: "bg-white text-black p-4 rounded-lg shadow-lg",
                 }}
               />
+
 
               {/* Vehicle Type */}
               <Select
                 placeholder="Select vehicle"
                 isRequired
+                isInvalid={!!errors.vehicle}
+                errorMessage={errors.vehicle}
                 selectedKeys={
                   form.vehicle ? [form.vehicle] : []
                 }
@@ -154,15 +293,14 @@ export default function BookingSection() {
                     vehicle: Array.from(keys)[0] as string,
                   })
                 }
-                className="sm:col-span-2"
+                className="sm:col-span-2 bg-white"
                 classNames={{
                   label: "text-zinc-700 font-medium",
-                  trigger: "border-zinc-300",
                   value: "text-black",
                 }}
               >
                 {vehicleOptions.map((option) => (
-                  <SelectItem key={option.key}>
+                  <SelectItem key={option.key} className="bg-white text-black">
                     {option.label}
                   </SelectItem>
                 ))}

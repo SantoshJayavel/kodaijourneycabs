@@ -1,8 +1,10 @@
 "use client";
 
 import { Card, CardBody, Button, Chip } from "@heroui/react";
+import { useRouter } from "next/navigation";
 
 type RouteItem = {
+  slug: string;
   title: string;
   duration: string;
   type: string;
@@ -11,6 +13,7 @@ type RouteItem = {
 
 const routes: RouteItem[] = [
   {
+    slug: "kodaikanal-local-sightseeing",
     title: "Kodaikanal Local Sightseeing",
     duration: "1 Day",
     type: "Popular",
@@ -18,6 +21,7 @@ const routes: RouteItem[] = [
       "Cover Bryant Park, Coaker’s Walk, Pillar Rocks, and other must-visit attractions.",
   },
   {
+    slug: "coimbatore-kodaikanal",
     title: "Coimbatore ↔ Kodaikanal",
     duration: "One Way / Round Trip",
     type: "Airport Route",
@@ -25,6 +29,7 @@ const routes: RouteItem[] = [
       "Comfortable long-distance travel with experienced hill-route drivers.",
   },
   {
+    slug: "madurai-kodaikanal",
     title: "Madurai ↔ Kodaikanal",
     duration: "One Way / Round Trip",
     type: "Airport Route",
@@ -32,6 +37,7 @@ const routes: RouteItem[] = [
       "Reliable pickup and drop from Madurai Airport or city.",
   },
   {
+    slug: "honey-moon-package",
     title: "Honeymoon Package",
     duration: "2–3 Days",
     type: "Special",
@@ -41,6 +47,7 @@ const routes: RouteItem[] = [
 ];
 
 export default function RoutesSection() {
+  const router = useRouter();
   return (
     <section id="packages" className="bg-zinc-50 py-24">
       <div className="mx-auto max-w-7xl px-6">
@@ -90,14 +97,15 @@ export default function RoutesSection() {
                     {route.duration}
                   </span>
 
-                  <Button
-                    color="success"
-                    radius="full"
-                    size="sm"
-                    className="text-[#33612B]"
-                  >
-                    View Details
-                  </Button>
+                  {route.slug === "kodaikanal-local-sightseeing" && (
+                    <Button
+                      radius="full"
+                      size="sm"
+                      className="text-[#33612B] font-semibold"
+                      onPress={() => router.push(`/routes/${route.slug}`)}
+                    >
+                      View Details
+                    </Button>)}
                 </div>
               </CardBody>
             </Card>
