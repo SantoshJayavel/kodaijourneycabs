@@ -268,15 +268,14 @@ export default function BookingSection() {
                     date: validateDate(date),
                   });
                 }}
-                className="sm:col-span-2"
+                className="sm:col-span-2 px-4"
                 isInvalid={!!errors.date}
                 errorMessage={errors.date}
                 classNames={{
-                  input: "text-zinc-900 bg-white px-6 py-2",
+                  input: "text-zinc-900 bg-white px-4 py-4 flex justify-center items-center",
                   popoverContent: "bg-white text-black p-2 rounded-lg shadow-lg flex flex-col justify-center items-center",
                 }}
               />
-
 
               {/* Vehicle Type */}
               <Select

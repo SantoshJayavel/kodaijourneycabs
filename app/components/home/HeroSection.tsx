@@ -33,12 +33,11 @@ export default function HeroSection() {
         {/* CTA Buttons */}
         <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
           <Button
-            as={Link}
-            href="/contact"
-            color="success"
+            as="a"
+            href="#contact"
             radius="full"
             size="lg"
-            className="font-medium px-8"
+            className="font-medium px-8 bg-[#33612B] px-4 py-4"
           >
             Book Your Service
           </Button>
