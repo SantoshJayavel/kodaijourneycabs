@@ -64,17 +64,33 @@ export default function LocalSightseeingPage() {
     return (
         <>
             {/* Sub Hero */}
-            <section className="relative bg-[#33612B] py-24 text-white">
-                <div className="mx-auto max-w-5xl px-6 text-center">
-                    <h1 className="text-4xl font-semibold">
-                        Kodaikanal Local Sightseeing
-                    </h1>
-                    <p className="mt-4 text-lg text-white/80">
-                        Day-wise curated itinerary covering the best of Kodaikanal.
-                        Starting time: <strong>9:30 AM</strong>
-                    </p>
+            <section className="relative h-[60vh] min-h-[420px] text-white">
+                {/* Background Image */}
+                <div
+                    className="absolute inset-0 bg-cover bg-center"
+                    style={{
+                        backgroundImage: "url('/images/gallery/5.webp')",
+                    }}
+                />
+
+                {/* Dark Overlay */}
+                <div className="absolute inset-0 bg-black/50" />
+
+                {/* Content */}
+                <div className="relative z-10 flex h-full items-center justify-center px-6 text-center">
+                    <div className="max-w-5xl">
+                        <h1 className="text-4xl md:text-5xl font-semibold">
+                            Kodaikanal Local Sightseeing
+                        </h1>
+                        <p className="mt-4 text-lg md:text-xl text-white/90">
+                            Day-wise curated itinerary covering the best of Kodaikanal.
+                            <br />
+                            Starting time: <strong>9:30 AM</strong>
+                        </p>
+                    </div>
                 </div>
             </section>
+
 
             {/* Itinerary */}
             <section className="py-20 bg-zinc-50">

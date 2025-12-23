@@ -113,10 +113,10 @@ export default function Header() {
       {/* RIGHT ACTIONS */}
       <NavbarContent justify="end" className="gap-3">
         <Button
-          as={Link}
-          href="/contact"
+          as="a"
+          href="#contact"
           radius="full"
-          className="hidden sm:flex px-7 py-2.5 font-medium shadow-sm"
+          className="hidden sm:flex px-7 py-2.5 font-medium shadow-sm bg-white text-[#33612B] hover:bg-gray-100 transition-colors"
         >
           Book Now
         </Button>
@@ -147,8 +147,8 @@ export const KodaiJourneyLogo = () => {
     <Image
       src="/images/Logo.png"
       alt="Kodai Journey Logo"
-      width={80}
-      height={80}
+      width={50}
+      height={50}
       priority
     />
   );

@@ -273,8 +273,7 @@ export default function BookingSection() {
                 errorMessage={errors.date}
                 classNames={{
                   input: "text-zinc-900 bg-white px-6 py-2",
-                  popoverContent: "bg-white text-black p-4 rounded-lg shadow-lg",
-                  calendar:"bg-black"
+                  popoverContent: "bg-white text-black p-2 rounded-lg shadow-lg flex flex-col justify-center items-center",
                 }}
               />
 
