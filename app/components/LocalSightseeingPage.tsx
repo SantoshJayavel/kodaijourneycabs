@@ -69,7 +69,7 @@ export default function LocalSightseeingPage() {
                 <div
                     className="absolute inset-0 bg-cover bg-center"
                     style={{
-                        backgroundImage: "url('/images/gallery/5.webp')",
+                        backgroundImage: "url('/images/5.webp')",
                     }}
                 />
 

@@ -3,14 +3,14 @@
 import Image from "next/image";
 
 const galleryImages = [
-    "/images/gallery/1.webp",
-    "/images/gallery/2.webp",
-    "/images/gallery/3.webp",
-    "/images/gallery/4.webp",
-    "/images/gallery/5.webp",
-    "/images/gallery/6.webp",
-    "/images/gallery/7.webp",
-    "/images/gallery/8.webp",
+    "/images/1.webp",
+    "/images/2.webp",
+    "/images/3.webp",
+    "/images/4.webp",
+    "/images/5.webp",
+    "/images/6.webp",
+    "/images/7.webp",
+    "/images/8.webp",
 ];
 
 export default function GalleryPage() {

@@ -8,25 +8,25 @@ const fleet = [
     name: "Hatchback",
     passengers: "3–4 Passengers",
     luggage: "2 Bags",
-    image: "/fleet/hatchback.png",
+    image: "/images/hatchback.png",
   },
   {
     name: "Sedan",
     passengers: "4 Passengers",
     luggage: "3 Bags",
-    image: "/fleet/sSedan.png",
+    image: "/images/sSedan.png",
   },
   {
     name: "SUV",
     passengers: "6–7 Passengers",
     luggage: "4 Bags",
-    image: "/fleet/suv.png",
+    image: "/images/suv.png",
   },
   {
     name: "Tempo Traveller",
     passengers: "12–15 Passengers",
     luggage: "Ample Space",
-    image: "/fleet/mini-van.png",
+    image: "/images/mini-van.png",
   },
 ];
 
