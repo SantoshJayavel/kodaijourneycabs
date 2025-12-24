@@ -3,6 +3,40 @@
 import { Card, CardBody, Button, Chip } from "@heroui/react";
 import Link from "next/link";
 
+export const metadata = {
+  title: "Madurai to Kodaikanal Cab Service | Airport Taxi | Coimbatore to Kodaikanal | Palani to Kodaikanal | Dindigul to Kodaikanal",
+  description:
+    "Book Madurai to Kodaikanal cab service with experienced hill drivers. Safe airport pickup and comfortable travel at affordable prices.",
+  keywords: [
+    "Madurai to Kodaikanal cab",
+    "airport taxi Madurai to Kodaikanal",
+    "Madurai airport cab",
+    "Kodaikanal cab from Madurai",
+    "Madurai to Kodaikanal taxi service",
+    "Coimbatore to Kodaikanal cab",
+    "airport taxi Coimbatore to Kodaikanal",
+    "Coimbatore airport cab",
+    "Kodaikanal cab from Coimbatore",
+    "Coimbatore to Kodaikanal taxi service",
+    "Palani to Kodaikanal cab",
+    "airport taxi Palani to Kodaikanal",
+    "Palani airport cab",
+    "Kodaikanal cab from Palani",
+    "Palani to Kodaikanal taxi service",
+    "Theni to Kodaikanal cab",
+    "airport taxi Theni to Kodaikanal",
+    "Theni airport cab",
+    "Kodaikanal cab from Theni",
+    "Theni to Kodaikanal taxi service",
+    "Dindigul to Kodaikanal cab",
+    "airport taxi Dindigul to Kodaikanal",
+    "Dindigul airport cab",
+    "Kodaikanal cab from Dindigul",
+    "Dindigul to Kodaikanal taxi service",
+  ],
+};
+
+
 type RouteItem = {
   title: string;
   duration: string;

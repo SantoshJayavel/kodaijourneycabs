@@ -13,6 +13,18 @@ import {
   Form
 } from "@heroui/react";
 
+export const metadata = {
+  title: "Contact Kodai Journey | Cab Booking in Kodaikanal",
+  description:
+    "Contact Kodai Journey Tours & Travels to book reliable cab services in Kodaikanal. Call or WhatsApp for instant booking.",
+  keywords: [
+    "contact Kodai Journey",
+    "cab booking Kodaikanal",
+    "Kodaikanal taxi contact",
+  ],
+};
+
+
 type BookingFormState = {
   name: string;
   phone: string;

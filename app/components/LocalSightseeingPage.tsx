@@ -1,3 +1,20 @@
+export const metadata = {
+    title: "Kodaikanal Local Sightseeing Cab | One Day Trip",
+    description:
+        "Explore top attractions of Kodaikanal with our local sightseeing cab service. One-day itinerary covering Pillar Rocks, Coaker’s Walk & more.",
+    keywords: [
+        "Kodaikanal local sightseeing",
+        "one day Kodaikanal trip",
+        "sightseeing cab Kodaikanal",
+        "Kodaikanal tour taxi",
+        "kodaikanal attractions cab",
+        "Kodaikanal day tour",
+        "Kodaikanal cab service",
+        "cab hire Kodaikanal",
+    ],
+};
+
+
 const itinerary = [
     {
         day: "Day 1",
